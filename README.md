@@ -2,8 +2,11 @@
 
 # Create your area
 mkdir Perov
+
 cd Perov
+
 git clone git@github.com:crovelli/PerovSimul.git
+
 cd PerovSimul
 
 # Setup environment on lxpus
