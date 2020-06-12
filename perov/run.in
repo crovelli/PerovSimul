@@ -1,0 +1,28 @@
+# Macro file for perov example
+
+/run/initialize
+
+/control/verbose 2
+/run/verbose 1
+/event/verbose 1
+/tracking/verbose 1
+
+/gps/particle geantino
+
+#circular plane source
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/centre 0. 0. 0. cm
+/gps/pos/radius 2. cm
+
+# angular distribution
+/gps/ang/type iso
+
+# energy distribution
+# the beam energy is in gaussian profile centered at 50 MeV
+/gps/ene/type Gauss
+/gps/ene/mono 50 MeV
+/gps/ene/sigma 10. MeV
+
+/run/beamOn 10
+
