@@ -12,10 +12,12 @@ cd PerovSimul
 # Setup environment on lxpus
 /bin/bash
 
-[ 
+[
+
   export LCGENV_PATH=/cvmfs/sft.cern.ch/lcg/releases
 
   /cvmfs/sft.cern.ch/lcg/releases/lcgenv/latest/lcgenv -p LCG_96 --ignore Grid x86_64-centos7-gcc8-opt Geant4 > geant4_lxplus.sh
+
 ]
 
 source geant4_lxplus.sh
