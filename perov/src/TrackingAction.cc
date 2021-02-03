@@ -23,11 +23,11 @@ void TrackingAction::PreUserTrackingAction(const G4Track* track)
     G4ThreeVector direction = track->GetMomentumDirection();
 
     // fill histograms    
-    analysis->FillPrimaryInfo(ekin, etot, vertex, direction);       
+    analysis->FillPrimaryInfo(ekin/eV, etot/eV, vertex/mm, direction);       
 
     // to integrate the primary particle energy
-    fEventAction->AddPrimaryEneKine(ekin);
-    fEventAction->AddPrimaryEneTot(etot);
+    fEventAction->AddPrimaryEneKine(ekin/eV);
+    fEventAction->AddPrimaryEneTot(etot/eV);
   }
 }
 

@@ -23,7 +23,6 @@ void RunAction::BeginOfRunAction(const G4Run* run)
 
 void RunAction::EndOfRunAction(const G4Run* run)
 {
-  // G4int nofEvents = run->GetNumberOfEvent();
   G4int nofEvents = fRun->GetNumberOfEvent();
   if (nofEvents == 0) return;
 
@@ -32,10 +31,6 @@ void RunAction::EndOfRunAction(const G4Run* run)
   analysis->EndOfRun(run->GetNumberOfEvent());  
 
   // Total energy of primary particle
-  // const Run* myRun = static_cast<const Run*>(run);
-  // G4double primaryEneKine = myRun->GetPrimaryEneKine();
-  // G4double primaryEneTot  = myRun->GetPrimaryEneTot();
-  // G4int    hits = myRun->GetHitParticle();
   G4double primaryEneKine = fRun->GetPrimaryEneKine();
   G4double primaryEneTot  = fRun->GetPrimaryEneTot();
   G4int    hits = fRun->GetHitParticle();
@@ -43,15 +38,16 @@ void RunAction::EndOfRunAction(const G4Run* run)
   G4cout << G4endl;
   G4cout << G4endl;
   G4cout << "============================" << G4endl;
-  G4cout << "Primary particle, total energy = " << primaryEneTot/keV  << " keV" << ", " << (primaryEneTot/eV)*1.6022/10000000000000000000.  << " Joule" << G4endl;
-  G4cout << "Primary particle, kine energy = "  << primaryEneKine/keV << " keV" << ", " << (primaryEneKine/eV)*1.6022/10000000000000000000. << " Joule" << G4endl;
+  G4cout << "Primary particle, total energy = " << primaryEneTot  << " eV" << ", " << (primaryEneTot)*1.6022/10000000000000000000.  << " Joule" << G4endl;
+  G4cout << "Primary particle, kine energy = "  << primaryEneKine << " eV" << ", " << (primaryEneKine)*1.6022/10000000000000000000. << " Joule" << G4endl;
   G4cout << G4endl;
   G4cout << G4endl;
   G4cout << "# events = " << nofEvents  << G4endl;
   G4cout << "# events with primary hitting the active surface = " << hits << G4endl;   
   G4cout << G4endl;
   G4cout << G4endl;
-  G4cout << "Joule on the active surface [kine] = " << (primaryEneTot/eV)*(1.6022/10000000000000000000.)*hits/nofEvents <<  G4endl;
+  G4cout << "Joule on the active surface [kine] = " << (primaryEneTot)*(1.6022/10000000000000000000.)*hits/nofEvents <<  G4endl;
+  G4cout << "Joule/cm^2 = " << ((primaryEneTot)*(1.6022/10000000000000000000.)*hits/nofEvents)/(0.18) << G4endl;
   G4cout << "============================" << G4endl;
   G4cout << G4endl;
 }

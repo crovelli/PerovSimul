@@ -41,11 +41,12 @@ void AnalysisManager::BookHisto()
   // Histos on primary particle
   G4int nbins = 100;
   G4double vmin  = 0.;
-  G4double vmax  = 100.;
+  G4double vmax  = 10.;
   G4double vminy = 0.;
-  G4double vmaxy = 100.;
+  G4double vmaxy = 10.;
   fHisto->Add1D("H10", "kinetic energy", nbins, vmin, vmax);
   fHisto->Add1D("H11", "total energy",   nbins, vmin, vmax);
+  nbins = 100; vmin = 0.; vmax = 5.;
   fHisto->Add1D("H12", "vertex dist R", nbins, vmin, vmax);
   nbins = 100; vmin = -1.; vmax = 1.;
   fHisto->Add1D("H13", "direction: cos(theta)", nbins, vmin, vmax);
@@ -53,7 +54,7 @@ void AnalysisManager::BookHisto()
   fHisto->Add1D("H14", "direction: phi", nbins, vmin, vmax);
   nbins = 100; vmin = 0.; vmax = 100.;
   fHisto->Add1D("H15", "deposited energy", nbins, vmin, vmax);     
-  nbins = 100; vmin = -30.; vmax = 30.;   
+  nbins = 60; vmin = -3.; vmax = 3.;   
   fHisto->Add2D("H20", "vertex: Y vs X", nbins, vmin, vmax, nbins,vmin,vmax);
   fHisto->Add2D("H21", "vertex: Z vs X", nbins, vmin, vmax, nbins,vmin,vmax);
   fHisto->Add2D("H22", "vertex: Y vs Z", nbins, vmin, vmax, nbins,vmin,vmax);

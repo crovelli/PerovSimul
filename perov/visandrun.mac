@@ -43,7 +43,7 @@
 # Name
 /vis/set/textColour green
 /vis/set/textLayout right
-/vis/scene/add/text2D 0.9 -.9 24 ! ! Timing
+/vis/scene/add/text2D 0.9 -.9 24 ! ! Perov
 /vis/set/textLayout    # Revert to normal (left adjusted) layout
 /vis/set/textColour    # Revert to default text colour (blue)
 #
@@ -84,19 +84,22 @@
 
 /gps/particle geantino
 
-#circular plane source
+# plane source, square, 0.25cm^2
 /gps/pos/type Plane
-/gps/pos/shape Circle
+/gps/pos/shape Square
 /gps/pos/centre 0. 0. 0. cm
-/gps/pos/radius 2. cm
+/gps/pos/halfx 0.25 cm
+/gps/pos/halfy 0.25 cm
+/gps/pos/rot1 0 1 0 
+/gps/pos/rot2 1 0 0 
 
 # angular distribution
-/gps/ang/type iso
+/gps/direction 0 0 1  
 
 # energy distribution
-# the beam energy is in gaussian profile centered at 50 MeV
+# the beam energy is monocromatic at blue (450nm -> 2.75eV), green (540nm -> 2.30eV) or red (700nm -> 1.77eV)  
 /gps/ene/type Gauss
-/gps/ene/mono 50 MeV
-/gps/ene/sigma 10. MeV
+/gps/ene/mono 2.75 eV
+/gps/ene/sigma 0 eV
 
 /run/beamOn 100

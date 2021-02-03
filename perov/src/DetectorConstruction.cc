@@ -51,8 +51,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
   // -----------------------------------
   // World
-  G4double world_sizeXY = 50*cm;
-  G4double world_sizeZ  = 50*cm;
+  G4double world_sizeXY = 1*cm;
+  G4double world_sizeZ  = 1*cm;
   G4Material* world_mat = nist->FindOrBuildMaterial("G4_AIR");
   
   G4Box* solidWorld =    
@@ -77,28 +77,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // ------------------------------------  
   // Distance source / crystal
-  G4double ring  = 2*cm;           
-
-  /*
-  // Source 
-  G4Material* plastic_mat = nist->FindOrBuildMaterial("plastic");
-  G4double source_radius = 10*mm,  source_dZ = 5.*mm;        
-  G4Tubs* source = new G4Tubs("source", 0, source_radius, source_dZ/2, 0, 2*M_PI);
-  G4LogicalVolume* logicSource = new G4LogicalVolume(source, plastic_mat, "SourceLV");        
-               
-  G4RotationMatrix rotmD  = G4RotationMatrix();
-  rotmD.rotateY(90*deg); 
-  rotmD.rotateZ(180*deg);
-  G4ThreeVector positionD(0,0,0);
-  G4Transform3D transformD = G4Transform3D(rotmD,positionD);
-                                    
-  new G4PVPlacement(transformD, logicSource, "source", logicWorld, false, 1, checkOverlaps); 
-  */
+  G4double ring  = 0.*mm;           
 
   // Crystal 
   G4Material* cryst_mat = nist->FindOrBuildMaterial("LYSO");
-  //G4double cryst_dX = 10*mm, cryst_dY = 10*mm, cryst_dZ = 10*mm; 
-  G4double cryst_dX = 100*mm, cryst_dY = 100*mm, cryst_dZ = 10*mm; 
+  G4double cryst_dX = 0.42426407*cm, cryst_dY = 0.42426407*cm, cryst_dZ = 0.1*cm;        // 0.18cm^2
   
   G4Box* solidCryst = new G4Box("crystal", cryst_dX/2, cryst_dY/2, cryst_dZ/2);
   G4LogicalVolume* logicCryst = 
@@ -106,10 +89,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                         cryst_mat,           //its material
 			"CrystalLV");        //its name
   
-  G4RotationMatrix rotmC  = G4RotationMatrix();
-  rotmC.rotateY(90*deg); 
+  G4RotationMatrix rotmC = G4RotationMatrix();
+  rotmC.rotateY(0*deg); 
   rotmC.rotateZ(0*deg);
-  //G4ThreeVector uzC = G4ThreeVector(std::cos(0*deg), std::sin(0*deg),0.);     
   G4ThreeVector uzC = G4ThreeVector(0., std::sin(0*deg),std::cos(0*deg));     
   G4ThreeVector positionC = (ring+0.5*cryst_dZ)*uzC;
   G4Transform3D transformC = G4Transform3D(rotmC,positionC);
